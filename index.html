@@ -9,27 +9,47 @@
   </head>
 
   <body>
-
+  
+    <div id="picture">
+     
     <div id="score">0</div>
-    <canvas id="gameCanvas" width="300" height="300"></canvas>
-
+    
+    <canvas id="gameCanvas" width="300" height="300" ></canvas>
+  </div>
     <style>
+      
+      #picture {
+        height:700px;
+        background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20200621/pngtree-abstract-modern-neon-frame-background-image_339537.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+      }
       #gameCanvas {
         position: absolute;
-        top: 50%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
 
       #score {
         text-align: center;
-        font-size: 140px;
+        position:absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -150%);
+        font-size: 180px;
         font-family: 'Antic Slab', serif;
+        font-weight: 700;
+        color: aliceblue;
+       
       }
+      
     </style>
   </body>
 
   <script>
+
     const GAME_SPEED = 100;
     const CANVAS_BORDER_COLOUR = 'black';
     const CANVAS_BACKGROUND_COLOUR = "white";
@@ -132,7 +152,7 @@
       const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
       if (didEatFood) {
         // Increase score
-        score += 10;
+        score +=  10;
         // Display score on screen
         document.getElementById('score').innerHTML = score;
 
@@ -151,14 +171,16 @@
     function didGameEnd() {
       for (let i = 4; i < snake.length; i++) {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+        
       }
 
       const hitLeftWall = snake[0].x < 0;
       const hitRightWall = snake[0].x > gameCanvas.width - 10;
       const hitToptWall = snake[0].y < 0;
       const hitBottomWall = snake[0].y > gameCanvas.height - 10;
-
+      
       return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+      
     }
 
     /**
